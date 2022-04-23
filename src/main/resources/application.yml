@@ -1,0 +1,14 @@
+
+spring:
+
+  application:
+    name: cstoudt-stocks
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

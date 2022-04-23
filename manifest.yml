@@ -1,0 +1,13 @@
+---
+applications:
+  - name: cstoudt-stocks
+    buildpacks:
+      - java_buildpack_offline
+    instances: 1
+    memory: 1G
+    path: target/demo-0.0.1-SNAPSHOT.jar
+    services:
+      - stock-db
+    env:
+      JBP_CONFIG_OPEN_JDK_JRE: "{ jre: { version: 71.+ } }
+      SPRING_PROFILES_ACTIVE: mysql
