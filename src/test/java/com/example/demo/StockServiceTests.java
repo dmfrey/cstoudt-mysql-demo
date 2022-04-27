@@ -4,12 +4,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJdbcTest
+@DirtiesContext
 public class StockServiceTests {
 
     @Autowired
@@ -39,7 +41,9 @@ public class StockServiceTests {
     @Test
     void testUpdateById() {
 
-        var actual = this.subject.updateById( 1L, "Test 1, Updated" );
+        Stock created = this.subject.save( new Stock( null, "Test", "TEST" ) );
+
+        var actual = this.subject.updateById( created.id(), "Test, Updated" );
 
         assertThat( actual ).isTrue();
 
